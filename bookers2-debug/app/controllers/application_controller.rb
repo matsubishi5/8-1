@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
+    ThanksMailer.send_confirm_to_user(current_user).deliver
     user_path(current_user)
   end
 
